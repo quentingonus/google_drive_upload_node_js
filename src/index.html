@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asterian | File Upload</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+</head>
+<body>
+    <form class="upload_form" method="POST">
+        <input class="upload_file" type="file" name="uploaded_file"/>
+        <button type='submit'>Upload</button>
+    </form>
+    <p class="upload_result"></p>
+</body>
+<script>
+    const upload_form = document.querySelector(".upload_form");
+    upload_form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const uploaded_file = document.querySelector('.upload_file');
+        const config = {
+            onUploadProgress: function(progressEvent) {
+              var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              document.querySelector('.upload_result').innerHTML = `${percentCompleted} % uploaded`;
+            }
+        }
+        let data = new FormData()
+        data.append('uploaded_file', uploaded_file.files[0])
+        //let upload_response = await axios.post('/upload', data, config);
+        let upload_response = await axios.post('/upload', data, config);
+        console.log(upload_response);
+        document.querySelector('.upload_result').innerHTML = upload_response.data;
+    });
+</script>
+</html>
