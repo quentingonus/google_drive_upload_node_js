@@ -1,0 +1,4 @@
+client_id
+52588258280-v6rd9sen1mvo7l1kpt0dpbons7m41s5n.apps.googleusercontent.com
+api
+AIzaSyAwe-O7_6VsJDyWx_4YLJuIlof5C2TnwkE
